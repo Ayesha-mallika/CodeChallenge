@@ -2,6 +2,7 @@
 using EventManagementApp.Context;
 using EventManagementApp.Models;
 using Microsoft.EntityFrameworkCore;
+using EventManagementApp.Models.DTOs;
 
 namespace EventManagementApp.Repositories
 {
@@ -18,12 +19,12 @@ namespace EventManagementApp.Repositories
         /// </summary>
         /// <param name="entity">event object that has to be added</param>
         /// <returns>Added event</returns>
-        public Event Add(Event entity)
+        public Event Add(Event events)
         {
 
-            _context.Events.Add(entity);
+            _context.Events.Add(events);
             _context.SaveChanges(); //this will make the change in Db
-            return entity;
+            return events;
         }
         /// <summary>
         /// to remove event by its id

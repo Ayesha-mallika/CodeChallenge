@@ -3,6 +3,8 @@ using Microsoft.AspNetCore.Mvc;
 using EventManagementApp.Exceptions;
 using EventManagementApp.Interfaces;
 using EventManagementApp.Models;
+using Newtonsoft.Json;
+using EventManagementApp.Models.DTOs;
 
 namespace EventManagementApp.Controllers
 {
@@ -42,7 +44,7 @@ namespace EventManagementApp.Controllers
                 {
                     return Ok(result);
                 }
-                message = "Could not Get book";
+                message = "Could not Get Event";
             }
             catch (Exception e)
             {
@@ -61,7 +63,7 @@ namespace EventManagementApp.Controllers
                 {
                     return Ok(result);
                 }
-                message = "Could not Get book";
+                message = "Could not Get Event";
             }
             catch (Exception e)
             {
@@ -71,21 +73,42 @@ namespace EventManagementApp.Controllers
         }
         [HttpPost("AddEvent")]
         //[Authorize(Roles = "Admin")]
-        public ActionResult Create(Event events)
+        public ActionResult Create([FromForm] IFormCollection data)
         {
-            string errorMessage = string.Empty;
+            IFormFile file = data.Files["image"];
+
+            if (file != null && file.Length > 0)
+            {
+                string filename = file.FileName;
+                string path = Path.Combine(@".\wwwroot\Images", filename);
+                using (var stream = new FileStream(path, FileMode.Create))
+                {
+                    file.CopyTo(stream);
+                }
+            }
+            string json = data["json"];
+            EventDTO eventDTO = JsonConvert.DeserializeObject<EventDTO>(json);
+            eventDTO.Image = file;
+
+            string message = string.Empty;
             try
             {
-                var result = _eventService.Add(events);
-                return Ok(result);
+
+
+                var book = _eventService.Add(eventDTO);
+                if (book != null)
+                {
+                    return Ok(book);
+                }
+                message = "Could not add Event";
             }
             catch (Exception e)
             {
-                errorMessage = e.Message;
+                message = e.Message;
             }
-            return BadRequest(errorMessage);
+            return BadRequest(message);
         }
-        [HttpPost]
+        [HttpDelete]
         //[Authorize(Roles = "Admin")]
         [Route("RemoveEvent")]
         public ActionResult RemoveEvent(int Id)
@@ -112,22 +135,6 @@ namespace EventManagementApp.Controllers
                 return Ok(events);
             }
             catch (EventsCantUpdateException e)
-            {
-                errorMessage = e.Message;
-            }
-            return BadRequest(errorMessage);
-        }
-
-        [HttpDelete]
-        public ActionResult Remove(int Id)
-        {
-            string errorMessage = string.Empty;
-            try
-            {
-                var result = _eventService.Remove(Id);
-                return Ok("event deleted successfully");
-            }
-            catch (EventsCantRemoveException e)
             {
                 errorMessage = e.Message;
             }

@@ -6,10 +6,20 @@ import { toast } from "react-toastify";
 function Events(){
     const [events,setEvents]=useState([]);
     const [search,setSearch]=useState("All");
+    const [filteredEvents, setFilteredEvents] = useState([]);
 
     useEffect(()=>{
         getEvents();
     },[]);
+    useEffect(() => {
+      if(search=="All"){
+        setEvents(filteredEvents);
+      }else{
+        const filtered = filteredEvents.filter(event => event.title.toLowerCase().includes(search.toLowerCase()));
+        setEvents(filtered);
+      }
+      
+  }, [search,filteredEvents]);
 
     const getEvents=()=>{
       if(search==""){
@@ -22,7 +32,7 @@ function Events(){
           })
           .then((response) => {
             const posts = response.data;
-            setEvents(posts);
+            setFilteredEvents(posts);
         })
         .catch(function (error) {
             console.log(error);
@@ -50,8 +60,8 @@ function Events(){
                           <p className="card-text">Descrtipton: {event.description}</p>
                           <p className="card-text">Location: {event.location}</p>
                           <p className="card-text">Date: {event.date}</p>
-                          <p className="card-text">Max Attendees: {event.max}</p>
-                          <p className="card-text">Price: $.{event.price}</p>
+                          <p className="card-text">Max Attendees: {event.maxAttendees}</p>
+                          <p className="card-text">Price: $.{event.registrationFee}</p>
                           <a href="#" className="btn btn-primary">
                             view
                           </a>

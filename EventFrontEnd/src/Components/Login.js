@@ -15,13 +15,14 @@ function Login(){
             Username: username,
             password:password
         }).then( async(myData)=>{
+          console.log(myData.data)
           toast.success("Login Successfull...");
             var token = await myData.data.token;
             var role = await myData.data.role;
             await localStorage.setItem("token",token);
             await localStorage.setItem("role",role);
             await localStorage.setItem("id",myData.data.email);
-            await localStorage.setItem("name",myData.data.Username);
+            await localStorage.setItem("name",myData.data.username);
             setTimeout(function(){
               window.location.reload();
             },5000);

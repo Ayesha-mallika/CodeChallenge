@@ -3,6 +3,7 @@ using EventManagementApp.Models;
 using EventManagementApp.Exceptions;
 using EventManagementApp.Repositories;
 using static System.Reflection.Metadata.BlobBuilder;
+using EventManagementApp.Models.DTOs;
 
 namespace EventManagementApp.Services
 {
@@ -15,10 +16,32 @@ namespace EventManagementApp.Services
             repository = _repository;
         }
 
-        public Event Add(Event events)
+        public EventDTO Add(EventDTO eventDTO)
         {
-            var res = repository.Add(events);
-            return res;
+            if (eventDTO == null)
+            {
+                return null;
+            }
+            else
+            {
+                Event events = new Event()
+                {
+                    Title = eventDTO.Title,
+                    Description = eventDTO.Description,
+                    UserId = eventDTO.UserId,
+                    Date = eventDTO.Date,
+                    Location = eventDTO.Location,
+                    registrationFee = eventDTO.registrationFee,
+                    maxAttendees = eventDTO.maxAttendees,
+                    Image = "http://localhost:5086/Images/" + eventDTO.Image.FileName
+                };
+                var result = repository.Add(events);
+                if (result != null)
+                {
+                    return eventDTO;
+                }
+                return null;
+            }
         }
 
         public Event Update(Event events)
@@ -69,11 +92,11 @@ namespace EventManagementApp.Services
             }
             return null;
         }
-        public List<Event> GetByEventId(int Id)
+        public Event GetByEventId(int Id)
         {
             try
             {
-                var events = repository.GetAll().Where(e => e.Id == Id).ToList();
+                var events = repository.GetById(Id);
                 if (events != null)
                 {
                     return events;

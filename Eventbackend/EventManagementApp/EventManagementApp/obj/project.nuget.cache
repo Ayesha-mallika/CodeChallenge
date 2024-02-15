@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "KGNVQ+qcrStvC+8DSq2m7ZKCP2j5uLTYXKaRcOOqlVMN5SdIUoAWFeMlsTpkDtke3wVKv++GEg6egKWRAgCjrA==",
+  "dgSpecHash": "ij/ZIG0b4KRIXpw+HlvO1H0OLAk3gnOg2rrJ+Pkj1HbZAVTI8jL2tPbrd1x9seAJRQ/f6Vncpf30QE5pon5MSA==",
   "success": true,
-  "projectFilePath": "C:\\Users\\2000112369\\BOKKSTORE\\Eventbackend\\EventManagementApp\\EventManagementApp\\EventManagementApp.csproj",
+  "projectFilePath": "C:\\Users\\2000112369\\CodeChallenge\\CodeChallenge\\Eventbackend\\EventManagementApp\\EventManagementApp\\EventManagementApp.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\2000112369\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Users\\2000112369\\.nuget\\packages\\microsoft.aspnetcore.authentication.jwtbearer\\6.0.24\\microsoft.aspnetcore.authentication.jwtbearer.6.0.24.nupkg.sha512",

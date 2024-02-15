@@ -1,11 +1,39 @@
 {
   "Version": 1,
-  "Hash": "NV3JQCUwc0lflIZJkZhPGB8L4XWQzfRCPY2BIGBUhGk=",
+  "Hash": "iN/mDTpzrBUNDDXXZee0qhnHIUiWLALXp5368lWhMVo=",
   "Source": "EventManagementApp",
   "BasePath": "_content/EventManagementApp",
   "Mode": "Default",
   "ManifestType": "Build",
   "ReferencedProjectsConfiguration": [],
-  "DiscoveryPatterns": [],
-  "Assets": []
+  "DiscoveryPatterns": [
+    {
+      "Name": "EventManagementApp\\wwwroot",
+      "Source": "EventManagementApp",
+      "ContentRoot": "C:\\Users\\2000112369\\CodeChallenge\\CodeChallenge\\Eventbackend\\EventManagementApp\\EventManagementApp\\wwwroot\\",
+      "BasePath": "_content/EventManagementApp",
+      "Pattern": "**"
+    }
+  ],
+  "Assets": [
+    {
+      "Identity": "C:\\Users\\2000112369\\CodeChallenge\\CodeChallenge\\Eventbackend\\EventManagementApp\\EventManagementApp\\wwwroot\\Images\\th.jpg",
+      "SourceId": "EventManagementApp",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\2000112369\\CodeChallenge\\CodeChallenge\\Eventbackend\\EventManagementApp\\EventManagementApp\\wwwroot\\",
+      "BasePath": "_content/EventManagementApp",
+      "RelativePath": "Images/th.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\Images\\th.jpg"
+    }
+  ]
 }

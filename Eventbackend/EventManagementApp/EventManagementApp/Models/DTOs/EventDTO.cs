@@ -12,12 +12,12 @@ namespace EventManagementApp.Models.DTOs
         public string Description { get; set; } = "";
         [Required(ErrorMessage = "Genre cannot be empty")]
         public string Location { get; set; } = "";
-        public string maxAttendees { get; set; } = "";
+        public int maxAttendees { get; set; }
 
         [Required(ErrorMessage = "Publish Date cannot be empty")]
-        public DateTime Date { get; set; }
+        public string Date { get; set; }
         [Required(ErrorMessage = "Price cannot be empty")]
-        public int registerationFee { get; set; }
+        public int registrationFee { get; set; }
         [Required(ErrorMessage = "Image is Mandatory")]
         public IFormFile? Image { get; set; }
     }

@@ -26,6 +26,7 @@ function AdminEvents(){
           })
           .then((response) => {
             const posts = response.data;
+            console.log(posts)
             setEvents(posts);
         })
         .catch(function (error) {
@@ -38,7 +39,7 @@ function AdminEvents(){
         if(confirmation){
          axios.delete('http://localhost:5086/api/Event/RemoveEvent', {
          params :{
-           id : delID
+           Id : delID
          },
          headers: {
            Authorization: `Bearer ${localStorage.getItem("token")}`,
@@ -68,10 +69,10 @@ function AdminEvents(){
                           <p className="card-text">Descrtipton: {event.description}</p>
                           <p className="card-text">Location: {event.location}</p>
                           <p className="card-text">Date: {event.date}</p>
-                          <p className="card-text">Max Attendees: {event.max}</p>
-                          <p className="card-text">Price: $.{event.price}</p>
-                          <button className="btn btn-primary" onClick={()=>edit(event.EventId)}>Edit</button>
-                          <button className="btn btn-danger btnspc" onClick={() => deleteEvent(event.eventId)}>Delete</button>
+                          <p className="card-text">Max Attendees: {event.maxAttendees}</p>
+                          <p className="card-text">Price: $.{event.registrationFee}</p>
+                          <button className="btn btn-primary" onClick={()=>edit(event.id)}>Edit</button>
+                          <button className="btn btn-danger btnspc" onClick={() => deleteEvent(event.id)}>Delete</button>
                         </div>
                         <Popup open={isPopupOpen} onClose={() => setPopupOpen(false)} overlayStyle={{ background: 'rgba(0, 0, 0, 0.6)' }}>
             <UpdateEvent id={eid}/>

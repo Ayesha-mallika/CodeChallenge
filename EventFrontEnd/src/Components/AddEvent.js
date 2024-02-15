@@ -19,9 +19,9 @@ function AddEvent(){
             title: title,
             description: description,
             date: date,
-            price: price,
+            registrationFee: price,
             location:location,
-            max:max,
+            maxAttendees:max,
             userId: localStorage.getItem("id")
         };
         const formdata = new FormData();
